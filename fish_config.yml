@@ -2,4 +2,4 @@
   become: false
   tasks:
     - name: change fish config
-      shell: op inject -i config_tmpl.fish -o config.fish
+      shell: op inject -i /Users/taradruffel/.config/fish/config_tmpl.fish -o /Users/taradruffel/.config/fish/config.fish
