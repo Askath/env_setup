@@ -137,9 +137,12 @@
       shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
       become: true
       tags: shell
+    - name: prepare user 
+      shell: whoami
+      register: current_user
+      tags: shell
     - name: Change default Shell
-      shell: chsh -s $(which fish)
-      become: true
+      shell: "chsh -s $(which zsh)"
       tags: shell
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
