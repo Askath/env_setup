@@ -103,7 +103,7 @@
 
     - name: Install Homebrew package - timer
       community.general.homebrew:
-        name: caarlos0/tap/timer
+        name: timer
 
     - name: Install Homebrew package - terminal-notifier
       community.general.homebrew:
