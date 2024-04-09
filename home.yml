@@ -1,18 +1,20 @@
 - hosts: localhost
   become: false
   tasks:
-    - community.general.homebrew:
-      name: fish
-      state: present
+    - name: install fish
+      community.general.homebrew:
+        name: fish
+        state: present
     - name: add fish to shells
       shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
       become: true
     - name: Change Shell
       shell: chsh -s /opt/homebrew/bin/fish
       become: true
-    - community.general.homebrew:
-      name: yadm
-      state: present
+    - name: install fish
+      community.general.homebrew:
+        name: yadm
+        state: present
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
     - name: Install Figma
