@@ -3,3 +3,13 @@
   tasks:
     - community.general.homebrew:
       name: fish
+    - name: add fish to shells
+      shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
+    - name: Change Shell
+      shell: chsh -s /opt/homebrew/bin/fish
+    - community.general.homebrew:
+      name: yadm
+    - name: clone Dotfiles
+      shell: yadm clone https://github.com/Askath/Dotfiles.git
+    - community.general.homebrew:
+      name: homebrew/cask/kitty
