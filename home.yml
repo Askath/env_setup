@@ -141,7 +141,5 @@
       become: true
     - name: change shell
       shell: /opt/homebrew/bin/fish
-    - name: add brew to path
-      shell: fish_add_path /opt/homebrew/bin
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
