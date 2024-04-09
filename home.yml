@@ -136,10 +136,8 @@
     - name: add fish to shells
       shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
       become: true
-    - name: Change Shell
+    - name: Change default Shell
       shell: chsh -s /opt/homebrew/bin/fish
       become: true
-    - name: change shell
-      shell: /opt/homebrew/bin/fish
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
