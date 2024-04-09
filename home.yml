@@ -5,6 +5,10 @@
       community.general.homebrew_tap:
         name: caarlos0/timer
         url: "https://github.com/caarlos0/timer"
+    - name: Tap a Homebrew repository using url, XO/XO
+      community.general.homebrew_tap:
+        name: xo/xo
+        url: "https://github.com/xo/homebrew-xo"
     - name: install yadm
       community.general.homebrew:
         name: yadm
