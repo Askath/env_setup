@@ -1,0 +1,5 @@
+- hosts: localhost
+  become: false
+  tasks:
+    - name: change fish config
+      shell: op inject -i config_tmpl.fish -o config.fish

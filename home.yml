@@ -1,23 +1,139 @@
 - hosts: localhost
   become: false
   tasks:
-    - name: install fish
+    - name: install yadm
+      community.general.homebrew:
+        name: yadm
+        state: present
+    - name: Add Homebrew tap for fonts
+      community.general.homebrew_tap:
+        name: homebrew/cask-fonts
+
+    - name: Install Homebrew cask - kitty
+      community.general.homebrew_cask:
+        name: kitty
+
+    - name: Install Homebrew package - fish
       community.general.homebrew:
         name: fish
-        state: present
+
+    - name: Install Homebrew package - fzf
+      community.general.homebrew:
+        name: fzf
+
+    - name: Install Homebrew package - bat
+      community.general.homebrew:
+        name: bat
+
+    - name: Install Homebrew package - eza
+      community.general.homebrew:
+        name: eza
+
+    - name: Install Homebrew package - fd
+      community.general.homebrew:
+        name: fd
+
+    - name: Install Homebrew package - ripgrep
+      community.general.homebrew:
+        name: ripgrep
+
+    - name: Install Homebrew package - lazydocker
+      community.general.homebrew:
+        name: lazydocker
+
+    - name: Install Homebrew package - node
+      community.general.homebrew:
+        name: node
+
+    - name: Install Homebrew package - zoxide
+      community.general.homebrew:
+        name: zoxide
+
+    - name: Install Homebrew package - tmux
+      community.general.homebrew:
+        name: tmux
+
+    - name: Install Homebrew package - glow
+      community.general.homebrew:
+        name: glow
+
+    - name: Install Homebrew package - gh
+      community.general.homebrew:
+        name: gh
+
+    - name: Install Homebrew package - jq
+      community.general.homebrew:
+        name: jq
+
+    - name: Install Homebrew package - lnav
+      community.general.homebrew:
+        name: lnav
+
+    - name: Install Homebrew package - neovim
+      community.general.homebrew:
+        name: neovim
+
+    - name: Install Homebrew package - openjdk@21
+      community.general.homebrew:
+        name: openjdk@21
+
+    - name: Install Homebrew package - tig
+      community.general.homebrew:
+        name: tig
+
+    - name: Install Homebrew package - 1password-cli
+      community.general.homebrew:
+        name: 1password-cli
+
+    - name: Install Homebrew package - font-monaspace
+      community.general.homebrew:
+        name: font-monaspace
+
+    - name: Install Homebrew cask - amethyst
+      community.general.homebrew_cask:
+        name: amethyst
+
+    - name: Install Homebrew cask - google-chrome
+      community.general.homebrew_cask:
+        name: google-chrome
+
+    - name: Install Homebrew package - timer
+      community.general.homebrew:
+        name: caarlos0/tap/timer
+
+    - name: Install Homebrew package - terminal-notifier
+      community.general.homebrew:
+        name: terminal-notifier
+
+    - name: Install Homebrew package - usql
+      community.general.homebrew:
+        name: xo/xo/usql
+
+    - name: Install Homebrew package - httpie
+      community.general.homebrew:
+        name: httpie
+
+    - name: Install Homebrew package - sesh
+      community.general.homebrew:
+        name: joshmedeski/sesh/sesh
+
+    - name: Install Homebrew package - chatgpt
+      community.general.homebrew:
+        name: j178/tap/chatgpt
+
+    - name: Install Homebrew cask - firefox
+      community.general.homebrew_cask:
+        name: firefox
+
     - name: add fish to shells
       shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
       become: true
     - name: Change Shell
       shell: chsh -s /opt/homebrew/bin/fish
       become: true
-    - name: install fish
-      community.general.homebrew:
-        name: yadm
-        state: present
+    - name: change shell
+      shell: /opt/homebrew/bin/fish
+    - name: add brew to path
+      shell: fish_add_path /opt/homebrew/bin
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
-    - name: Install Figma
-      community.general.homebrew:
-        name: homebrew/cask/figma
-        state: present
