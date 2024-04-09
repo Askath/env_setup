@@ -171,8 +171,16 @@
         name: 1password
       tags: pkg
     - name: Install Homebrew nerdfont symbols
-      community.general.homebrew_cask:
+      community.general.homebrew:
         name: font-symbols-only-nerd-font
+      tags: pkg
+    - name: Install Homebrew nnn
+      community.general.homebrew:
+        name: nnn
+      tags: pkg
+    - name: Install Homebrew aria2
+      community.general.homebrew:
+        name: aria2
       tags: pkg
 
     - name: add fish to shells
@@ -182,3 +190,12 @@
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
       tags: dotfiles
+    - name: update dotfiles
+      shell: yadm pull
+      tags: dotfiles-update
+
+    - name: install tpm
+      ansible.builtin.git:
+        repo: https://github.com/tmux-plugins/tpm
+        dest: /Users/taradruffel/.tmux/plugins/tpm
+      tags: pkg
