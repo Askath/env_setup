@@ -11,5 +11,11 @@
       name: yadm
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
-    - community.general.homebrew:
-      name: homebrew/cask/kitty
+    - name: Install kitty
+      community.general.homebrew_cask:
+        name: kitty
+        state: present
+    - name: Install Figma
+      community.general.homebrew_cask:
+        name: figma
+        state: present
