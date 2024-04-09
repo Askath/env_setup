@@ -1,6 +1,11 @@
 - hosts: localhost
   become: false
   tasks:
+    - name: Tap a Homebrew repository using url, nerd font symbols
+      community.general.homebrew_tap:
+        name: homebrew/cask-fonts
+        url: "https://github.com/Homebrew/homebrew-cask-fonts"
+      tags: pkg
     - name: Tap a Homebrew repository using url, Timer
       community.general.homebrew_tap:
         name: caarlos0/timer
@@ -164,6 +169,10 @@
     - name: Install Homebrew cask - 1password
       community.general.homebrew_cask:
         name: 1password
+      tags: pkg
+    - name: Install Homebrew nerdfont symbols
+      community.general.homebrew_cask:
+        name: font-symbols-only-nerd-font
       tags: pkg
 
     - name: add fish to shells
