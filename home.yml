@@ -117,10 +117,6 @@
       community.general.homebrew:
         name: xo/xo/usql
 
-    - name: Install Homebrew package - httpie
-      community.general.homebrew:
-        name: httpie
-
     - name: Install Homebrew package - sesh
       community.general.homebrew:
         name: joshmedeski/sesh/sesh
