@@ -8,7 +8,7 @@
     - name: Tap a Homebrew repository using url, Sesh
       community.general.homebrew_tap:
         name: joshmedeski/sesh
-        url: "https://github.com/joshmedeski/sesh"
+        url: "https://github.com/joshmedeski/homebrew-sesh"
     - name: Tap a Homebrew repository using url, XO/XO
       community.general.homebrew_tap:
         name: xo/xo
@@ -123,11 +123,7 @@
 
     - name: Install Homebrew package - sesh
       community.general.homebrew:
-        name: joshmedeski/sesh/sesh
-
-    - name: Install Homebrew package - chatgpt
-      community.general.homebrew:
-        name: j178/tap/chatgpt
+        name: sesh
 
     - name: Install Homebrew cask - firefox
       community.general.homebrew_cask:
