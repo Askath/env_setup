@@ -5,145 +5,171 @@
       community.general.homebrew_tap:
         name: caarlos0/timer
         url: "https://github.com/caarlos0/timer"
+      tags: pkg
     - name: Tap a Homebrew repository using url, Sesh
       community.general.homebrew_tap:
         name: joshmedeski/sesh
         url: "https://github.com/joshmedeski/homebrew-sesh"
+      tags: pkg
     - name: Tap a Homebrew repository using url, XO/XO
       community.general.homebrew_tap:
         name: xo/xo
         url: "https://github.com/xo/homebrew-xo"
+      tags: pkg
     - name: install yadm
       community.general.homebrew:
         name: yadm
         state: present
+      tags: pkg
     - name: Add Homebrew tap for fonts
       community.general.homebrew_tap:
         name: homebrew/cask-fonts
+      tags: pkg
 
     - name: Install Homebrew cask - kitty
       community.general.homebrew_cask:
         name: kitty
+      tags: pkg
 
     - name: Install Homebrew package - fish
       community.general.homebrew:
         name: fish
+      tags: pkg
 
     - name: Install Homebrew package - fzf
       community.general.homebrew:
         name: fzf
+      tags: pkg
 
     - name: Install Homebrew package - bat
       community.general.homebrew:
         name: bat
+      tags: pkg
 
     - name: Install Homebrew package - eza
       community.general.homebrew:
         name: eza
+      tags: pkg
 
     - name: Install Homebrew package - fd
       community.general.homebrew:
         name: fd
+      tags: pkg
 
     - name: Install Homebrew package - ripgrep
       community.general.homebrew:
         name: ripgrep
+      tags: pkg
 
     - name: Install Homebrew package - lazydocker
       community.general.homebrew:
         name: lazydocker
+      tags: pkg
 
     - name: Install Homebrew package - node
       community.general.homebrew:
         name: node
+      tags: pkg
 
     - name: Install Homebrew package - zoxide
       community.general.homebrew:
         name: zoxide
+      tags: pkg
 
     - name: Install Homebrew package - tmux
       community.general.homebrew:
         name: tmux
+      tags: pkg
 
     - name: Install Homebrew package - glow
       community.general.homebrew:
         name: glow
+      tags: pkg
 
     - name: Install Homebrew package - gh
       community.general.homebrew:
         name: gh
+      tags: pkg
 
     - name: Install Homebrew package - jq
       community.general.homebrew:
         name: jq
+      tags: pkg
 
     - name: Install Homebrew package - lnav
       community.general.homebrew:
         name: lnav
+      tags: pkg
 
     - name: Install Homebrew package - neovim
       community.general.homebrew:
         name: neovim
+      tags: pkg
 
     - name: Install Homebrew package - openjdk@21
       community.general.homebrew:
         name: openjdk@21
+      tags: pkg
 
     - name: Install Homebrew package - tig
       community.general.homebrew:
         name: tig
+      tags: pkg
 
     - name: Install Homebrew package - 1password-cli
       community.general.homebrew:
         name: 1password-cli
+      tags: pkg
 
     - name: Install Homebrew package - font-monaspace
       community.general.homebrew:
         name: font-monaspace
+      tags: pkg
 
     - name: Install Homebrew cask - amethyst
       community.general.homebrew_cask:
         name: amethyst
+      tags: pkg
 
     - name: Install Homebrew cask - google-chrome
       community.general.homebrew_cask:
         name: google-chrome
+      tags: pkg
 
     - name: Install Homebrew package - timer
       community.general.homebrew:
         name: timer
+      tags: pkg
 
     - name: Install Homebrew package - terminal-notifier
       community.general.homebrew:
         name: terminal-notifier
+      tags: pkg
 
     - name: Install Homebrew package - usql
       community.general.homebrew:
         name: xo/xo/usql
+      tags: pkg
 
     - name: Install Homebrew package - sesh
       community.general.homebrew:
         name: sesh
+      tags: pkg
 
     - name: Install Homebrew cask - firefox
       community.general.homebrew_cask:
         name: firefox
+      tags: pkg
 
     - name: Install Homebrew cask - 1password
       community.general.homebrew_cask:
         name: 1password
+      tags: pkg
 
     - name: add fish to shells
       shell: sudo sh -c 'echo /opt/homebrew/bin/fish >> /etc/shells'
       become: true
       tags: shell
-    - name: prepare user 
-      shell: whoami
-      register: current_user
-      tags: shell
-    - name: Change default Shell
-      shell: "chsh -s $(which zsh)"
-      tags: shell
     - name: clone Dotfiles
       shell: yadm clone https://github.com/Askath/Dotfiles.git
-      tags: shell
+      tags: dotfiles
