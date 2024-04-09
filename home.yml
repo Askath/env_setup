@@ -1,6 +1,10 @@
 - hosts: localhost
   become: false
   tasks:
+    - name: Tap a Homebrew repository using url, Timer
+      community.general.homebrew_tap:
+        name: caarlos0/timer
+        url: "https://github.com/caarlos0/timer"
     - name: install yadm
       community.general.homebrew:
         name: yadm
