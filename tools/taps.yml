@@ -1,0 +1,20 @@
+- name: Tap a Homebrew repository using url, nerd font symbols
+  community.general.homebrew_tap:
+    name: homebrew/cask-fonts
+    url: "https://github.com/Homebrew/homebrew-cask-fonts"
+  tags: taps
+- name: Tap a Homebrew repository using url, Timer
+  community.general.homebrew_tap:
+    name: caarlos0/timer
+    url: "https://github.com/caarlos0/timer"
+  tags: taps
+- name: Tap a Homebrew repository using url, Sesh
+  community.general.homebrew_tap:
+    name: joshmedeski/sesh
+    url: "https://github.com/joshmedeski/homebrew-sesh"
+  tags: taps
+- name: Tap a Homebrew repository using url, XO/XO
+  community.general.homebrew_tap:
+    name: xo/xo
+    url: "https://github.com/xo/homebrew-xo"
+  tags: taps
