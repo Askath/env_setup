@@ -20,15 +20,15 @@
         dest: /Users/taradruffel/.workspace/frontend
       tags: pull
 
-    - name: buld api 
+    - name: build api 
       shell: "mvn clean package -f /Users/taradruffel/.workspace/api/pom.xml -P'core and-with-npm wrapper'"
       tags: setup-server
 
     - name: install backend 
-      shell: "mvn clean install -f /Users/taradruffel/.workspace/backend/modules/database/pom.xml"
+      shell: "mvn clean install -f /Users/taradruffel/.workspace/backend/pom.xml"
       tags: setup-server
 
-    - name: create liquibase
+    - name: create docker
       shell: "mvn docker:start -f /Users/taradruffel/.workspace/backend/modules/database/pom.xml"
       tags: setup-server
 

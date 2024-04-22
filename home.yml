@@ -1,6 +1,10 @@
 - hosts: localhost
   become: false
   ignore_errors: true
+  pre_tasks: 
+    - name: update all
+      shell: "brew update && brew upgrade"
+      tags: tools, taps
   tasks:
     - include_tasks: tools/taps.yml
       tags: taps

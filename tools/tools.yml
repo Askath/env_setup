@@ -1,3 +1,7 @@
+- name: update 
+  shell: "brew update && brew upgrade"
+  tags: tools
+
 - name: install yadm
   community.general.homebrew:
     name: yadm
