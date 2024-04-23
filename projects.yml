@@ -2,46 +2,57 @@
   become: false
   ignore_errors: true
   tasks:
+
+    - name: checkout RSS Reader 
+      ansible.builtin.git:
+        repo: https://github.com/Askath/RSS-Client.git
+        dest: /Users/taradruffel/.workspace/repos/rss
+      tags: pull, private
+
     - name: checkout Backend 
       ansible.builtin.git:
         repo: https://github.com/optadata/phoenix-core.git
-        dest: /Users/taradruffel/.workspace/backend
+        dest: /Users/taradruffel/.workspace/repos/backend
       tags: pull
 
     - name: checkout api 
       ansible.builtin.git:
         repo: https://github.com/optadata/phoenix-api.git
-        dest: /Users/taradruffel/.workspace/api
+        dest: /Users/taradruffel/.workspace/repos/api
       tags: pull
 
     - name: checkout frontend 
       ansible.builtin.git:
         repo: https://github.com/optadata/phoenix-frontend.git
-        dest: /Users/taradruffel/.workspace/frontend
+        dest: /Users/taradruffel/.workspace/repos/frontend
       tags: pull
 
     - name: build api 
-      shell: "mvn clean package -f /Users/taradruffel/.workspace/api/pom.xml -P'core and-with-npm wrapper'"
+      shell: "mvn clean package -f /Users/taradruffel/.workspace/repos/api/pom.xml -P'core and-with-npm wrapper'"
+      tags: setup-server
+
+    - name: compile Backend 
+      shell: "mvn clean compile -f /Users/taradruffel/.workspace/repos/backend/pom.xml"
       tags: setup-server
 
     - name: install backend 
-      shell: "mvn clean install -f /Users/taradruffel/.workspace/backend/pom.xml"
+      shell: "mvn clean install -f /Users/taradruffel/.workspace/repos/backend/pom.xml"
       tags: setup-server
 
     - name: create docker
-      shell: "mvn docker:start -f /Users/taradruffel/.workspace/backend/modules/database/pom.xml"
+      shell: "mvn docker:start -f /Users/taradruffel/.workspace/repos/backend/modules/database/pom.xml"
       tags: setup-server
 
     - name: create liquibase
-      shell: "mvn liquibase:update -f /Users/taradruffel/.workspace/backend/modules/database/pom.xml"
+      shell: "mvn liquibase:update -f /Users/taradruffel/.workspace/repos/backend/modules/database/pom.xml"
       tags: setup-server
 
     - name: create Testdata
-      shell: "mvn spring-boot:test-run -f /Users/taradruffel/.workspace/backend/modules/service/pom.xml"
+      shell: "mvn spring-boot:test-run -f /Users/taradruffel/.workspace/repos/backend/modules/service/pom.xml"
       tags: setup-server
 
     - name: run backend server 
-      shell: "tmux split-window 'mvn spring-boot:run -f /Users/taradruffel/.workspace/backend/modules/service/pom.xml | lnav'"
+      shell: "tmux split-window 'mvn spring-boot:run -f /Users/taradruffel/.workspace/repos/backend/modules/service/pom.xml | lnav'"
       tags: setup-server, run
       async: 180
       poll: 0

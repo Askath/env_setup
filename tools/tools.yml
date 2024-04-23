@@ -111,6 +111,11 @@
     name: tig
   tags: tools
 
+- name: Install Homebrew package - rustup
+  community.general.homebrew:
+    name: rustup
+  tags: tools
+
 - name: Install Homebrew package - 1password-cli
   community.general.homebrew:
     name: 1password-cli
@@ -161,6 +166,19 @@
     name: 1password
     state: installed
   tags: tools
+
+- name: Install Homebrew cask - insomnia
+  community.general.homebrew_cask:
+    name: insomnia
+    state: installed
+  tags: tools
+
+- name: Install Homebrew cask - alfred
+  community.general.homebrew_cask:
+    name: alfred
+    state: installed
+  tags: tools
+
 - name: Install Homebrew nerdfont symbols
   community.general.homebrew:
     name: font-symbols-only-nerd-font

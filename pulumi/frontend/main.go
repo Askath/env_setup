@@ -7,27 +7,36 @@ import (
 
 func main() {
 	pulumi.Run(func(ctx *pulumi.Context) error {
-		// Build and publish the Docker image
-		image, err := docker.NewImage(ctx, "my-image", &docker.ImageArgs{
+
+		image, err := docker.NewImage(ctx, "frontend", &docker.ImageArgs{
 			Build: docker.DockerBuildArgs{
-				Context: pulumi.String("./app"),
+				Context:    pulumi.String("/Users/taradruffel/.workspace/repos/frontend/."),
+				Dockerfile: pulumi.String("/Users/taradruffel/.workspace/repos/frontend/DockerfileDev"),
 			},
-			ImageName: pulumi.String("myapp:latest"),
+			ImageName: pulumi.String("frontend"),
+			SkipPush:  pulumi.Bool(true),
 		})
 		if err != nil {
 			return err
 		}
 
-		// Start a container using the built Docker image
-		_, err = docker.NewContainer(ctx, "my-container", &docker.ContainerArgs{
+
+		_, err = docker.NewContainer(ctx, "frontend", &docker.ContainerArgs{
 			Image: image.BaseImageName,
 			Ports: docker.ContainerPortArray{
 				&docker.ContainerPortArgs{
-					Internal: pulumi.Int(80),
-					External: pulumi.Int(80),
+					Internal: pulumi.Int(4200),
+					External: pulumi.Int(4200),
 				},
 			},
-		})
+			Volumes: docker.ContainerVolumeArray{
+				&docker.ContainerVolumeArgs{
+					ContainerPath: pulumi.String("/app"),
+					HostPath:      pulumi.String("/Users/taradruffel/.workspace/repos/frontend/."),
+				},
+			},
+		}, pulumi.DependsOn([]pulumi.Resource{image}))
+
 		if err != nil {
 			return err
 		}
