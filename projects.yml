@@ -28,7 +28,7 @@
       tags: pull
 
     - name: build api 
-      shell: "mvn clean package -f /Users/taradruffel/.workspace/repos/api/pom.xml -P'core and-with-npm wrapper'"
+      shell: "mvn clean package -f /Users/taradruffel/.workspace/repos/api/pom.xml -P'core, and-with-npm, wrapper'"
       tags: setup-server
 
     - name: compile Backend 
