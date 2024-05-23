@@ -1,0 +1,85 @@
+- hosts: localhost
+  become: false
+  ignore_errors: true
+  vars:
+      run_build_api: true
+      run_compile_backend: true
+      run_install_backend: true
+      run_create_docker: true
+      run_create_liquibase: true
+      run_create_testdata: true
+      run_backend_server: true
+      view_logs: true
+
+  tasks:
+    - name: build api 
+      shell: "mvn clean package -f /Users/taradruffel/.workspace/repos/api/pom.xml -P'core, and-with-npm, wrapper'"
+      tags: setup-server
+      when: run_build_api
+      register: build_api_output
+
+    - name: Compile Backend 
+      shell: "mvn clean compile -f /Users/taradruffel/.workspace/repos/backend/pom.xml"
+      tags: setup-server
+      when: run_compile_backend
+      register: compile_backend_output
+
+    - name: Install Backend 
+      shell: "mvn clean install -f /Users/taradruffel/.workspace/repos/backend/pom.xml"
+      tags: setup-server
+      when: run_install_backend
+      register: install_backend_output
+
+    - name: Create Docker
+      shell: "mvn docker:start -f /Users/taradruffel/.workspace/repos/backend/modules/database/pom.xml"
+      tags: setup-server
+      when: run_create_docker
+      register: create_docker_output
+
+    - name: Create Liquibase
+      shell: "mvn liquibase:update -f /Users/taradruffel/.workspace/repos/backend/modules/database/pom.xml"
+      tags: setup-server
+      when: run_create_liquibase
+      register: create_liquibase_output
+
+    - name: Create Testdata
+      shell: "mvn spring-boot:test-run -f /Users/taradruffel/.workspace/repos/backend/modules/service/pom.xml"
+      tags: setup-server
+      when: run_create_testdata
+      register: create_testdata_output
+
+    - name: Run Backend Server 
+      shell: "tmux split-window 'mvn spring-boot:run -f /Users/taradruffel/.workspace/repos/backend/modules/service/pom.xml | lnav'"
+      tags: setup-server, run
+      async: 180
+      poll: 0
+
+    - name: Display build api logs
+      debug:
+        var: build_api_output.stdout
+      when: view_logs and run_build_api
+
+    - name: Display compile backend logs
+      debug:
+        var: compile_backend_output.stdout
+      when: view_logs and run_compile_backend
+
+    - name: Display install backend logs
+      debug:
+        var: install_backend_output.stdout
+      when: view_logs and run_install_backend
+
+    - name: Display create docker logs
+      debug:
+        var: create_docker_output.stdout
+      when: view_logs and run_create_docker
+
+    - name: Display create liquibase logs
+      debug:
+        var: create_liquibase_output.stdout
+      when: view_logs and run_create_liquibase
+
+    - name: Display create testdata logs
+      debug:
+        var: create_testdata_output.stdout
+      when: view_logs and run_create_testdata
