@@ -1,7 +1,0 @@
-name: frontend
-runtime: go
-description: Frontend image
-config:
-  pulumi:tags:
-    value:
-      pulumi:template: https://www.pulumi.com/ai/api/project/f9fbcc0c-57a4-4823-bf38-2b1425684731.zip
